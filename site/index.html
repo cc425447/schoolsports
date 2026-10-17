@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="St Andrew's Cathedral School 14A basketball: next game, results and the ISA season draw.">
+<title>St Andrew's 14A Basketball</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Figtree:wght@400;600;700&display=swap">
+<style>
+/* Layout: one narrow column — title, season record strip, ISA links, next game, share ticket, last result */
+:root{
+  --bg:#f1f4fa; --surface:#ffffff; --ink:#0f1d3a; --muted:#4f5c74; --line:#d5ddeb;
+  --navy:#14316e; --on-navy:#ffffff; --navy-soft:#e4eaf6;
+  --win:#1b6e43; --loss:#a3322a;
+  --win-tile:#1d7a49; --loss-tile:#b3362c;
+  --display:"Big Shoulders Display","Arial Narrow",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  accent-color:var(--navy);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b1326; --surface:#121d36; --ink:#eef2fa; --muted:#a3b0c8; --line:#26345a;
+  --navy:#8fb2ff; --on-navy:#0b1326; --navy-soft:#1a2747;
+  --win:#5fd197; --loss:#f2877c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1326; --surface:#121d36; --ink:#eef2fa; --muted:#a3b0c8; --line:#26345a;
+  --navy:#8fb2ff; --on-navy:#0b1326; --navy-soft:#1a2747;
+  --win:#5fd197; --loss:#f2877c; color-scheme:dark}
+html{scrollbar-color:var(--line) var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.5}
+::selection{background:var(--navy);color:var(--on-navy)}
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+
+.wrap{max-width:34rem;margin:0 auto;padding-block:24px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:32px}
+.ico{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+header{display:flex;flex-direction:column;gap:6px}
+h1{font-family:var(--display);font-weight:800;font-size:2.75rem;letter-spacing:.01em;text-transform:uppercase;line-height:.95;margin:0;text-wrap:balance}
+h1 span{color:var(--navy)}
+.sub-title{margin:0;color:var(--muted);font-size:.95rem}
+h2{font-family:var(--display);font-weight:700;font-size:1.45rem;margin:0;letter-spacing:.03em;text-transform:uppercase;line-height:1.1}
+section{display:flex;flex-direction:column;gap:12px}
+
+/* Season record */
+.record{display:grid;grid-template-columns:repeat(4,1fr);background:var(--navy);color:var(--on-navy);border-radius:12px;overflow:hidden;margin-top:-12px}
+.stat{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 6px 12px;min-width:0}
+.stat+.stat{border-left:1px solid color-mix(in srgb,var(--on-navy) 22%,transparent)}
+.stat b{font-family:var(--display);font-weight:800;font-size:2.3rem;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;opacity:.9}
+
+/* ISA links */
+.links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;min-width:0;
+  padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  transition:border-color .2s cubic-bezier(.16,1,.3,1),transform .2s cubic-bezier(.16,1,.3,1)}
+.btn:hover{border-color:var(--navy)}
+.btn:active{transform:scale(.98)}
+.btn strong{font-family:var(--display);font-size:1.35rem;font-weight:700;letter-spacing:.02em;display:block;line-height:1.05}
+.btn small{color:var(--muted);font-size:.85rem;display:block}
+.btn .ico{color:var(--navy)}
+@media (max-width:380px){.links{grid-template-columns:1fr}}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.when{font-family:var(--display);font-weight:800;font-size:2rem;line-height:1;font-variant-numeric:tabular-nums;margin:0}
+.facts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.facts li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;min-width:0}
+.facts .ico{color:var(--navy);margin-top:2px}
+.facts .opp{font-weight:700;font-size:1.05rem}
+.actions{display:flex;flex-wrap:wrap;gap:6px;padding-top:4px}
+.card .actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.card .actions [hidden]{display:none}
+.card .pill{padding:9px 6px;font-size:.9rem;gap:6px;justify-content:center;white-space:nowrap}
+.card .pill .ico{width:16px;height:16px}
+.card .status:empty{display:none}
+.card .msg{background:var(--navy-soft)}
+.pill{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;font-size:.95rem;text-decoration:none;cursor:pointer;
+  padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);
+  transition:background-color .2s cubic-bezier(.16,1,.3,1),transform .2s cubic-bezier(.16,1,.3,1)}
+.pill:hover{background:var(--navy-soft)}
+.pill:active{transform:scale(.97)}
+.pill.solid{background:var(--navy);border-color:var(--navy);color:var(--on-navy)}
+.pill.solid:hover{background:color-mix(in srgb,var(--navy) 88%,var(--ink))}
+.pill .ico{width:18px;height:18px}
+
+/* Share */
+.msg{margin:0;padding:14px 16px;background:var(--surface);border-radius:10px;font:inherit;font-size:.95rem;line-height:1.6;
+  white-space:pre-wrap;overflow-wrap:anywhere;user-select:all;color:var(--ink)}
+.status{font-size:.9rem;color:var(--muted);min-height:1.4em;margin:0}
+.ball-pop{animation:pop .6s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{0%{transform:translateY(0) rotate(0)}35%{transform:translateY(-6px) rotate(-30deg)}70%{transform:translateY(0) rotate(-60deg)}100%{transform:rotate(-60deg)}}
+@media (prefers-reduced-motion:reduce){.ball-pop{animation:none}.btn,.pill{transition:none}}
+
+/* Last result */
+.score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.chip{font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 10px;border-radius:6px;border:1.5px solid currentColor;color:var(--muted)}
+.win .chip{color:var(--win)}
+.loss .chip{color:var(--loss)}
+.detail{margin:0;color:var(--muted);font-size:.95rem}
+.updated{font-size:.82rem;color:var(--muted);margin:0}
+
+/* Season draw */
+.draw-list{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rd{display:grid;grid-template-columns:2.4rem 1fr auto;gap:12px;align-items:start;padding:14px 16px;min-width:0}
+.rd+.rd{border-top:1px solid var(--line)}
+.rd.next{background:var(--navy-soft)}
+.rd-n{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.1;color:var(--navy);font-variant-numeric:tabular-nums}
+.rd-main{display:flex;flex-direction:column;gap:2px;min-width:0}
+.rd-top{font-weight:700;font-variant-numeric:tabular-nums}
+.rd-top .t{font-weight:400;color:var(--muted)}
+.rd-opp{font-size:.95rem}
+.ha{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-left:6px}
+.rd-place{font-size:.85rem;color:var(--muted);text-decoration:none;display:inline-flex;gap:4px;align-items:flex-start;overflow-wrap:anywhere}
+a.rd-place:hover{color:var(--navy);text-decoration:underline;text-underline-offset:3px}
+.rd-place .ico{width:14px;height:14px;margin-top:3px}
+.rd-res{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.rd-res b{font-family:var(--display);font-weight:800;font-size:1.3rem;line-height:1;font-variant-numeric:tabular-nums}
+.rd-res .chip{font-size:.75rem;padding:2px 8px;border:0;background:var(--muted);color:var(--surface)}
+.rd-res .chip.win{background:var(--win-tile);color:#ffffff}.rd-res .chip.loss{background:var(--loss-tile);color:#ffffff}
+.sb{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;row-gap:2px;margin-block:4px 2px;max-width:17rem}
+.sb .nm{font-size:.95rem;min-width:0;overflow-wrap:anywhere}
+.sb .nm.us{font-weight:700}
+.sb .pt{font-family:var(--display);font-weight:800;font-size:1.35rem;line-height:1.1;text-align:right;font-variant-numeric:tabular-nums}
+.sb .pt.hi{color:var(--navy)}
+.sb .lo{color:var(--muted)}
+.sb .pt.lo{font-weight:700}
+.next-tag{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--on-navy);background:var(--navy);padding:2px 8px;border-radius:999px}
+.tbc{color:var(--muted);font-style:italic}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5v17M6 6c3.2 3.4 3.2 8.6 0 12M18 6c-3.2 3.4-3.2 8.6 0 12"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.2a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.5"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4.5 3.5 6.5v13l5.5-2 6 2 5.5-2v-13l-5.5 2-6-2zM9 4.5v13M15 6.5v13"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header>
+    <h1>St Andrew's <span>14A</span></h1>
+    <p class="sub-title">ISA summer basketball · 14s Division 2</p>
+  </header>
+
+  <div class="record" role="group" aria-label="Season record">
+    <div class="stat"><b id="rec-p">0</b><span>Played</span></div>
+    <div class="stat"><b id="rec-w">0</b><span>Won</span></div>
+    <div class="stat"><b id="rec-l">0</b><span>Lost</span></div>
+    <div class="stat"><b id="rec-pos">–</b><span id="rec-of">Ladder</span></div>
+  </div>
+
+  <nav class="links" aria-label="ISA links">
+    <a class="btn" target="_blank" rel="noopener" href="https://fixtures.clipboard.app/isa/fixtures?associationSeasonId=e94f3fa0-158f-11f0-ac93-6bf44416c9ad&amp;associationActivityGradeIds=%5B%22711aa164-d787-11ef-bde6-6911b959edfa%22%5D&amp;organisationIds=%5B472%5D&amp;competitionGroupIds=%5B%222bc0fd94-8c12-4bad-ad4f-50585f703c0b%22%5D">
+      <span><strong>Draw &amp; results</strong><small>All 14A games</small></span><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <a class="btn" target="_blank" rel="noopener" href="https://fixtures.clipboard.app/isa/ladder?associationSeasonId=e94f3fa0-158f-11f0-ac93-6bf44416c9ad&amp;associationActivityTypeIds=%5B%5D&amp;associationActivityGradeIds=%5B%22711aa164-d787-11ef-bde6-6911b959edfa%22%5D&amp;view=table&amp;competitionGroupId=2bc0fd94-8c12-4bad-ad4f-50585f703c0b">
+      <span><strong>Ladder</strong><small>Grade table</small></span><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </nav>
+
+  <section aria-labelledby="next">
+    <h2 id="next">Next game</h2>
+    <div class="card">
+      <ul class="facts">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg><p class="when" id="n-when">No game scheduled</p></li>
+        <li id="n-vs-row" hidden><svg class="ico" aria-hidden="true"><use href="#i-ball"/></svg><span class="opp" id="n-vs"></span></li>
+        <li id="n-where-row" hidden><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span id="n-where"></span></li>
+      </ul>
+      <div class="actions" id="n-actions" hidden>
+        <a class="pill solid" id="n-dir" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-map"/></svg>Map</a>
+        <button class="pill" type="button" id="copy"><svg class="ico" id="copy-ball" aria-hidden="true"><use href="#i-ball"/></svg>Share</button>
+        <a class="pill" id="wa" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
+      </div>
+      <p class="status" id="status" role="status"></p>
+      <pre class="msg" id="msg" hidden></pre>
+    </div>
+  </section>
+
+  <section aria-labelledby="last">
+    <h2 id="last">Last result</h2>
+    <div class="card" id="r-card">
+      <div class="score"><span class="chip" id="r-chip" hidden></span><span class="when" id="r-score">No result yet</span></div>
+      <p class="detail" id="r-detail">Results appear here after each game.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="season">
+    <h2 id="season">Season draw</h2>
+    <ol class="draw-list" id="draw-list"></ol>
+  </section>
+
+  <p class="updated" id="updated"></p>
+</div>
+
+<script>
+/* Shown only if data.json cannot load. The live data comes from data.json, refreshed by GitHub Actions. */
+var FALLBACK={
+  "updated":"2026-10-17",
+  "record":{"played":1,"won":0,"lost":1,"drawn":0,"position":4,"teams":6},
+  "next":{"date":"Sat 24 Oct 2026","time":"10:00am","opp":"St Stanislaus' 14A","venue":"Indoor Recreation Venue, Court 2 (SSC school grounds), 220 Bentinck St, Bathurst NSW 2795"},
+  "last":{"date":"Sat 17 Oct 2026","opp":"Oakhill 14B","for":40,"against":33,"outcome":"","note":"The draw site lists Oakhill as the winner."},
+  "rounds":[
+    {"round":1,"date":"Sat 17 Oct 2026","time":"9:00am","opp":"Oakhill 14B","home":false,"place":"Centenary Sports Centre, Court 2 · Castle Hill","venue":"Centenary Sports Centre, Court 2, Oakhill College, 423/513 Old Northern Rd, Castle Hill NSW 2154","for":40,"against":33,"outcome":""},
+    {"round":2,"date":"Sat 24 Oct 2026","time":"10:00am","opp":"St Stanislaus' 14A","home":false,"place":"Indoor Recreation Venue, Court 2 · Bathurst","venue":"Indoor Recreation Venue, Court 2, St Stanislaus' College, 220 Bentinck St, Bathurst NSW 2795","for":"","against":"","outcome":""},
+    {"round":3,"date":"Sat 31 Oct 2026","time":"11:00am","opp":"St Pius 14B","home":false,"place":"CBC, Court 1 · Oxford Falls","venue":"CBC Court 1, Oxford Falls Playing Fields Complex, 1 Dreadnought Rd, Oxford Falls NSW 2099","for":"","against":"","outcome":""},
+    {"round":4,"date":"Sat 7 Nov 2026","time":"1:00pm","opp":"St Augustine's 14B","home":true,"place":"Sydney Uni Sport & Aquatic Centre, Court 1 · Darlington","venue":"Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008","for":"","against":"","outcome":""},
+    {"round":5,"date":"Sat 14 Nov 2026","time":"9:30am","opp":"St Paul's Grammar 14A","home":false,"place":"St Paul's Grammar School · Cranebrook","venue":"St Pauls Grammar School, 52 Taylor Rd, Cranebrook NSW 2749","for":"","against":"","outcome":""},
+    {"round":6,"date":"Sat 21 Nov 2026","time":"11:00am","opp":"Oakhill 14B","home":true,"place":"Sydney Uni Sport & Aquatic Centre, Court 2 · Darlington","venue":"Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008","for":"","against":"","outcome":""},
+    {"round":7,"date":"Sat 28 Nov 2026","time":"1:00pm","opp":"St Stanislaus' 14A","home":true,"place":"Sydney Uni Sport & Aquatic Centre, Court 2 · Darlington","venue":"Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008","for":"","against":"","outcome":""},
+    {"round":8,"date":"Sat 6 Feb 2027","time":"TBC","opp":"St Augustine's 14B","home":false,"place":"","venue":"","for":"","against":"","outcome":""},
+    {"round":9,"date":"Sat 13 Feb 2027","time":"TBC","opp":"St Pius 14B","home":true,"place":"","venue":"","for":"","against":"","outcome":""},
+    {"round":10,"date":"Sat 20 Feb 2027","time":"TBC","opp":"St Paul's Grammar 14A","home":true,"place":"","venue":"","for":"","against":"","outcome":""}
+  ]
+};
+function render(DATA){
+  var PAGE=location.href.split("#")[0];
+  function $(id){return document.getElementById(id);}
+  function mapUrl(v){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v);}
+  function shortMap(v){var m=v.split(/\),\s*/);var a=m[m.length-1];return "https://maps.google.com/?q="+a.replace(/,/g,"").trim().split(/\s+/).map(encodeURIComponent).join("+");}
+  function noYear(s){return (s||"").replace(/\s\d{4}$/,"");}
+
+  /* Record */
+  var r=DATA.record||{};
+  function ord(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+  if(r.played!=null){$("rec-p").textContent=r.played;$("rec-w").textContent=r.won||0;$("rec-l").textContent=r.lost||0;}
+  if(r.position){$("rec-pos").textContent=ord(r.position);$("rec-of").textContent=r.teams?"of "+r.teams:"Ladder";}
+
+  /* Next game */
+  var n=DATA.next||{};
+  var when=[noYear(n.date),n.time].filter(Boolean).join(" · ");
+  if(when){$("n-when").textContent=when;$("n-actions").hidden=false;}
+  if(n.opp){$("n-vs").textContent="vs "+n.opp;$("n-vs-row").hidden=false;}
+  if(n.venue){$("n-where").textContent=n.venue;$("n-where-row").hidden=false;$("n-dir").href=mapUrl(n.venue);}
+  else{$("n-dir").hidden=true;}
+
+  /* Share message */
+  var lines;
+  if(when){
+    lines=["🏀 St Andrew's 14A"+(n.opp?" vs "+n.opp:""),"📅 "+when];
+    if(n.venue){lines.push("📍 "+n.venue);lines.push("🗺️ "+shortMap(n.venue));}
+    lines.push("");lines.push("Come and cheer them on! Season updates: "+PAGE);
+  }else{
+    lines=["🏀 St Andrew's 14A basketball","No game scheduled right now.","Season updates: "+PAGE];
+  }
+  var text=lines.join("\n");
+  $("msg").textContent=text;
+  $("wa").href="https://wa.me/?text="+encodeURIComponent(text);
+
+  var status=$("status"), ball=$("copy-ball");
+  function selectMsg(){try{var s=window.getSelection(),rg=document.createRange();rg.selectNodeContents($("msg"));s.removeAllRanges();s.addRange(rg);}catch(e){}}
+  $("copy").addEventListener("click",function(){
+    function done(){
+      status.textContent="Copied. Paste it into your team chat.";
+      ball.classList.remove("ball-pop");void ball.getBoundingClientRect();ball.classList.add("ball-pop");
+    }
+    function fallback(){$("msg").hidden=false;selectMsg();status.textContent="Message selected. Use your phone's Copy to grab it.";}
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,fallback);}
+      else{fallback();}
+    }catch(e){fallback();}
+  });
+
+  /* Last result */
+  var l=DATA.last||{};
+  if(l.for!==""&&l.against!==""&&l.for!=null&&l.against!=null){
+    var o=(l.outcome||"").toUpperCase();
+    $("r-card").classList.add(o==="W"?"win":o==="L"?"loss":"draw");
+    $("r-chip").textContent=o==="W"?"Won":o==="L"?"Lost":o==="D"?"Draw":"Final";
+    $("r-chip").hidden=false;
+    $("r-score").textContent=l.for+" – "+l.against;
+    $("r-detail").textContent=[l.opp?"vs "+l.opp:"",l.date].filter(Boolean).join(" · ")+(l.note?". "+l.note:"");
+  }
+
+  /* Season draw */
+  var list=$("draw-list"), nextMarked=false;
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}
+  (DATA.rounds||[]).forEach(function(g){
+    var played=g.for!==""&&g.against!==""&&g.for!=null&&g.against!=null;
+    var li=el("li","rd");
+    if(!played&&!nextMarked){li.classList.add("next");nextMarked=true;}
+    li.appendChild(el("span","rd-n",g.round));
+    var main=el("div","rd-main");
+    var top=el("div","rd-top",noYear(g.date)+" ");
+    var t=el("span","t"+(g.time==="TBC"||!g.time?" tbc":""),"· "+(g.time||"TBC"));top.appendChild(t);
+    main.appendChild(top);
+    if(played){
+      var oo=(g.outcome||"").toUpperCase();
+      top.appendChild(el("span","ha",g.home?"Home":"Away"));
+      var sb=el("div","sb");
+      [["St Andrew's 14A",g.for,true],[g.opp||"Opponent",g.against,false]].forEach(function(t){
+        var won=oo==="W"?t[2]:oo==="L"?!t[2]:false, lost=(oo==="W"||oo==="L")&&!won;
+        sb.appendChild(el("span","nm"+(t[2]?" us":"")+(lost?" lo":""),t[0]));
+        sb.appendChild(el("span","pt"+(won?" hi":"")+(lost?" lo":""),t[1]));
+      });
+      main.appendChild(sb);
+    }else{
+      var opp=el("div","rd-opp","vs "+(g.opp||"TBC"));opp.appendChild(el("span","ha",g.home?"Home":"Away"));main.appendChild(opp);
+    }
+    if(g.venue){var a=el("a","rd-place");a.href=mapUrl(g.venue);a.target="_blank";a.rel="noopener";
+      a.innerHTML='<svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>';a.appendChild(el("span",null,g.place||g.venue));main.appendChild(a);}
+    else{main.appendChild(el("span","rd-place tbc","Venue TBC"));}
+    li.appendChild(main);
+    var res=el("div","rd-res");
+    if(played){var o=(g.outcome||"").toUpperCase();
+      res.appendChild(el("span","chip"+(o==="W"?" win":o==="L"?" loss":""),o==="W"?"Won":o==="L"?"Lost":o==="D"?"Draw":"Final"));}
+    else if(li.classList.contains("next")){res.appendChild(el("span","next-tag","Next"));}
+    li.appendChild(res);
+    list.appendChild(li);
+  });
+  if(!(DATA.rounds||[]).length){list.appendChild(el("li","rd tbc","Draw not published yet"));}
+
+  if(DATA.updated){
+    var d=new Date(DATA.updated+"T12:00:00");
+    $("updated").textContent="Updated "+(isNaN(d)?DATA.updated:d.toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"}));
+  }
+}
+fetch("data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(render).catch(function(){render(FALLBACK);});
+</script>
+</body>
+</html>

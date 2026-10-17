@@ -1,0 +1,74 @@
+name: Update 14A data and publish site
+
+# Times are UTC. Sydney daylight saving (Oct–Apr) is UTC+11.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '3,33 21-23 * * 5'  # Saturday 8:03am–10:33am Sydney, every 30 minutes
+    - cron: '3,33 0-4 * * 6'    # Saturday 11:03am–3:33pm Sydney, every 30 minutes
+    - cron: '3 5 * * 6'         # Saturday 4:03pm Sydney
+    - cron: '3 1 * * 1-5'       # Monday–Friday 12:03pm Sydney
+  workflow_dispatch:            # adds a "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install browser
+        run: |
+          npm install
+          npx playwright install --with-deps chromium
+
+      - name: Fetch latest draw, results and ladder
+        id: update
+        continue-on-error: true   # if the ISA site is down, keep the last good data
+        run: node scripts/update.mjs
+
+      - name: Save new data to the repository
+        id: save
+        if: steps.update.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # ignore the "updated" date line so an unchanged draw doesn't count as a change
+          if git diff --quiet -I '"updated"' -- site/data.json; then
+            git checkout -- site/data.json
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git add site/data.json
+            git commit -m "Update 14A data"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Scheduled runs only republish when the data changed; manual runs and uploads always publish.
+      - uses: actions/configure-pages@v5
+        if: github.event_name != 'schedule' || steps.save.outputs.changed == 'true'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'schedule' || steps.save.outputs.changed == 'true'
+        with:
+          path: site
+
+      - id: deployment
+        if: github.event_name != 'schedule' || steps.save.outputs.changed == 'true'
+        uses: actions/deploy-pages@v4

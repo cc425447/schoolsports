@@ -1,0 +1,147 @@
+{
+  "updated": "2026-10-17",
+  "record": {
+    "played": 1,
+    "won": 0,
+    "lost": 1,
+    "drawn": 0,
+    "position": 4,
+    "teams": 6
+  },
+  "next": {
+    "date": "Sat 24 Oct 2026",
+    "time": "10:00am",
+    "opp": "St Stanislaus' 14A",
+    "venue": "Indoor Recreation Venue, Court 2, SSC, School Grounds, 220 Bentinck St, Bathurst NSW 2795"
+  },
+  "last": {
+    "date": "Sat 17 Oct 2026",
+    "opp": "Oakhill 14B",
+    "for": 33,
+    "against": 40,
+    "outcome": "L",
+    "note": ""
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "date": "Sat 17 Oct 2026",
+      "time": "9:00am",
+      "opp": "Oakhill 14B",
+      "home": false,
+      "place": "Centenary Sports Centre, Court 2 · Castle Hill",
+      "venue": "Centenary Sports Centre, Court 2, OAK, School Grounds, 423/513 Old Northern Rd, Castle Hill NSW 2154",
+      "for": 33,
+      "against": 40,
+      "outcome": "L"
+    },
+    {
+      "round": 2,
+      "date": "Sat 24 Oct 2026",
+      "time": "10:00am",
+      "opp": "St Stanislaus' 14A",
+      "home": false,
+      "place": "Indoor Recreation Venue, Court 2 · Bathurst",
+      "venue": "Indoor Recreation Venue, Court 2, SSC, School Grounds, 220 Bentinck St, Bathurst NSW 2795",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    },
+    {
+      "round": 3,
+      "date": "Sat 31 Oct 2026",
+      "time": "11:00am",
+      "opp": "St Pius 14B",
+      "home": false,
+      "place": "CBC, Court 1 · Oxford Falls",
+      "venue": "CBC, Court 1, SPX, Oxford Falls Playing Fields Complex, 1 Dreadnought Rd, Oxford Falls NSW 2099",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    },
+    {
+      "round": 4,
+      "date": "Sat 7 Nov 2026",
+      "time": "1:00pm",
+      "opp": "St Augustine's 14B",
+      "home": true,
+      "place": "Sydney Uni Sport & Aquatic Centre, Court 1 · Darlington",
+      "venue": "Sydney Uni Sport & Aquatic Centre, Court 1, SACS, Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    },
+    {
+      "round": 5,
+      "date": "Sat 14 Nov 2026",
+      "time": "9:30am",
+      "opp": "St Paul's Grammar 14A",
+      "home": false,
+      "place": "SPGS, School Grounds · Cranebrook",
+      "venue": "SPGS, School Grounds, St Pauls Grammar School, 52 Taylor Rd, Cranebrook NSW 2749",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    },
+    {
+      "round": 6,
+      "date": "Sat 21 Nov 2026",
+      "time": "11:00am",
+      "opp": "Oakhill 14B",
+      "home": true,
+      "place": "Sydney Uni Sport & Aquatic Centre, Court 2 · Darlington",
+      "venue": "Sydney Uni Sport & Aquatic Centre, Court 2, SACS, Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    },
+    {
+      "round": 7,
+      "date": "Sat 28 Nov 2026",
+      "time": "1:00pm",
+      "opp": "St Stanislaus' 14A",
+      "home": true,
+      "place": "Sydney Uni Sport & Aquatic Centre, Court 2 · Darlington",
+      "venue": "Sydney Uni Sport & Aquatic Centre, Court 2, SACS, Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    },
+    {
+      "round": 8,
+      "date": "Sat 6 Feb 2027",
+      "time": "TBC",
+      "opp": "St Augustine's 14B",
+      "home": false,
+      "place": "",
+      "venue": "",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    },
+    {
+      "round": 9,
+      "date": "Sat 13 Feb 2027",
+      "time": "TBC",
+      "opp": "St Pius 14B",
+      "home": true,
+      "place": "",
+      "venue": "",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    },
+    {
+      "round": 10,
+      "date": "Sat 20 Feb 2027",
+      "time": "TBC",
+      "opp": "St Paul's Grammar 14A",
+      "home": true,
+      "place": "",
+      "venue": "",
+      "for": "",
+      "against": "",
+      "outcome": ""
+    }
+  ]
+}
