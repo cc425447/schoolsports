@@ -60,15 +60,19 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # Scheduled runs only republish when the data changed; manual runs and uploads always publish.
+      # Record when this check ran, so the page can show "Last checked".
+      # Not saved to the repository, only published with the site.
+      - name: Record check time
+        run: |
+          OK=$([ "${{ steps.update.outcome }}" = "success" ] && echo true || echo false)
+          echo "{\"at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\", \"ok\": $OK}" > site/checked.json
+          cat site/checked.json
+
       - uses: actions/configure-pages@v5
-        if: github.event_name != 'schedule' || steps.save.outputs.changed == 'true'
 
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'schedule' || steps.save.outputs.changed == 'true'
         with:
           path: site
 
       - id: deployment
-        if: github.event_name != 'schedule' || steps.save.outputs.changed == 'true'
         uses: actions/deploy-pages@v4

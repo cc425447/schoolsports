@@ -2,7 +2,7 @@
 
 A phone-friendly page showing St Andrew's Cathedral School 14A's next game, last result, season record and full ISA draw.
 
-GitHub Actions checks the ISA draw site every 30 minutes on **Saturdays from 8am to 4pm** and at **noon on weekdays** (Sydney time). The site is republished only when something has changed.
+GitHub Actions checks the ISA draw site every 30 minutes on **Saturdays from 8am to 4pm** and at **noon on weekdays** (Sydney time). The data is saved to the repository only when something has changed, and the page shows when it last checked.
 
 ## Files
 

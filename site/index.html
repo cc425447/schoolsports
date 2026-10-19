@@ -319,6 +319,12 @@ function render(DATA){
   }
 }
 fetch("data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(render).catch(function(){render(FALLBACK);});
+fetch("checked.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(c){
+  var d=new Date(c.at);if(isNaN(d))return;
+  var t=d.toLocaleString("en-AU",{timeZone:"Australia/Sydney",weekday:"short",day:"numeric",month:"short",hour:"numeric",minute:"2-digit"});
+  var u=document.getElementById("updated");
+  u.textContent=c.ok?"Last checked "+t:"Couldn't reach the ISA site at "+t+". Showing the last saved results.";
+}).catch(function(){});
 </script>
 </body>
 </html>
