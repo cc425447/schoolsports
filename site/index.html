@@ -101,6 +101,13 @@ section{display:flex;flex-direction:column;gap:12px}
 .loss .chip{color:var(--loss)}
 .detail{margin:0;color:var(--muted);font-size:.95rem}
 .updated{font-size:.82rem;color:var(--muted);margin:0}
+/* Win celebration */
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.win-toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 16px);transform:translate(-50%,-20px);opacity:0;z-index:51;
+  background:var(--navy);color:var(--on-navy);border-radius:999px;padding:10px 18px;font-family:var(--display);font-weight:800;
+  font-size:1.05rem;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis;box-shadow:0 8px 24px rgba(10,20,50,.25);
+  transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s cubic-bezier(.16,1,.3,1)}
+.win-toast.show{transform:translate(-50%,0);opacity:1}
 
 /* Season draw */
 .draw-list{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -318,7 +325,42 @@ function render(DATA){
     $("updated").textContent="Updated "+(isNaN(d)?DATA.updated:d.toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short"}));
   }
 }
-fetch("data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(render).catch(function(){render(FALLBACK);});
+
+/* Win celebration: confetti once per new win, per device. Add #celebrate to the address to preview it. */
+function celebrate(DATA){
+  var l=DATA&&DATA.last||{};
+  var preview=location.hash==="#celebrate";
+  if(!preview&&(l.outcome||"").toUpperCase()!=="W")return;
+  var key="sacs14a-celebrated:"+[l.date,l.opp,l["for"],l.against].join("|");
+  if(!preview){try{if(localStorage.getItem(key))return;localStorage.setItem(key,"1");}catch(e){}}
+  var who=l.opp?"Won vs "+l.opp.replace(/\s*\d+[A-Z]?$/,""):"St Andrew's win!";
+  var t=document.createElement("div");t.className="win-toast";t.setAttribute("role","status");
+  t.textContent=preview&&l.outcome!=="W"?"🏀 Preview: St Andrew's win!":"🏀 "+who+(l["for"]!==""?" "+l["for"]+"–"+l.against:"")+"!";
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){t.classList.add("show");});
+  setTimeout(function(){t.classList.remove("show");setTimeout(function(){t.remove();},600);},4200);
+  if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var c=document.createElement("canvas");c.id="confetti";c.setAttribute("aria-hidden","true");document.body.appendChild(c);
+  var x=c.getContext("2d"),dpr=Math.min(window.devicePixelRatio||1,2),W,H;
+  function size(){W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);}
+  size();addEventListener("resize",size);
+  var cols=["#14316e","#2f5bd3","#8fb2ff","#ffffff","#f2c230"],P=[],n=Math.min(180,Math.round(W*H/4500));
+  for(var i=0;i<n;i++){P.push({x:Math.random()*W,y:-20-Math.random()*H*.6,w:6+Math.random()*6,h:8+Math.random()*8,
+    vx:-1.2+Math.random()*2.4,vy:2+Math.random()*3,r:Math.random()*6.28,vr:-.2+Math.random()*.4,
+    c:cols[i%cols.length],sway:Math.random()*6.28});}
+  var start=performance.now();
+  (function frame(now){
+    var el=now-start,fade=el>3800?Math.max(0,1-(el-3800)/1200):1;
+    x.clearRect(0,0,W,H);x.globalAlpha=fade;
+    P.forEach(function(p){p.sway+=.05;p.x+=p.vx+Math.sin(p.sway)*.8;p.y+=p.vy;p.r+=p.vr;
+      x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;
+      x.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.r*1.3))+1);
+      if(p.c==="#ffffff"){x.strokeStyle="rgba(20,49,110,.35)";x.lineWidth=.6;x.strokeRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.r*1.3))+1);}
+      x.restore();});
+    if(fade>0)requestAnimationFrame(frame);else{c.remove();removeEventListener("resize",size);}
+  })(start);
+}
+fetch("data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){render(d);celebrate(d);}).catch(function(){render(FALLBACK);});
 fetch("checked.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(c){
   var d=new Date(c.at);if(isNaN(d))return;
   var t=d.toLocaleString("en-AU",{timeZone:"Australia/Sydney",weekday:"short",day:"numeric",month:"short",hour:"numeric",minute:"2-digit"});

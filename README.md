@@ -25,3 +25,7 @@ The season, grade and school codes are at the top of `scripts/update.mjs`. Repla
 ## Daylight saving
 
 GitHub schedules run on UTC, so the times above are for daylight saving (October to April). Outside daylight saving every check runs an hour earlier: Saturdays 7am to 3pm, and 11am on weekdays. GitHub can also start scheduled runs a few minutes late when it is busy.
+
+## Win celebration
+
+When the latest result is a win, each visitor gets a one-off confetti burst and a "Won" banner the first time they open the site after that game. To preview it any time, add `#celebrate` to the end of the address.
