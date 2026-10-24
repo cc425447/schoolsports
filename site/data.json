@@ -1,9 +1,9 @@
 {
   "updated": "2026-10-24",
   "record": {
-    "played": 1,
+    "played": 2,
     "won": 0,
-    "lost": 1,
+    "lost": 2,
     "drawn": 0,
     "position": 5,
     "teams": 6
@@ -12,13 +12,13 @@
     "date": "Sat 31 Oct 2026",
     "time": "11:00am",
     "opp": "St Pius 14B",
-    "venue": "CBC, Court 1, SPX, Oxford Falls Playing Fields Complex, 1 Dreadnought Rd, Oxford Falls NSW 2099"
+    "venue": "CBC, Court 2, SPX, Oxford Falls Playing Fields Complex, 1 Dreadnought Rd, Oxford Falls NSW 2099"
   },
   "last": {
-    "date": "Sat 17 Oct 2026",
-    "opp": "Oakhill 14B",
-    "for": 28,
-    "against": 35,
+    "date": "Sat 24 Oct 2026",
+    "opp": "St Stanislaus' 14A",
+    "for": 38,
+    "against": 41,
     "outcome": "L",
     "note": ""
   },
@@ -43,9 +43,9 @@
       "home": false,
       "place": "Indoor Recreation Venue, Court 2 · Bathurst",
       "venue": "Indoor Recreation Venue, Court 2, SSC, School Grounds, 220 Bentinck St, Bathurst NSW 2795",
-      "for": "",
-      "against": "",
-      "outcome": ""
+      "for": 38,
+      "against": 41,
+      "outcome": "L"
     },
     {
       "round": 3,
@@ -53,8 +53,8 @@
       "time": "11:00am",
       "opp": "St Pius 14B",
       "home": false,
-      "place": "CBC, Court 1 · Oxford Falls",
-      "venue": "CBC, Court 1, SPX, Oxford Falls Playing Fields Complex, 1 Dreadnought Rd, Oxford Falls NSW 2099",
+      "place": "CBC, Court 2 · Oxford Falls",
+      "venue": "CBC, Court 2, SPX, Oxford Falls Playing Fields Complex, 1 Dreadnought Rd, Oxford Falls NSW 2099",
       "for": "",
       "against": "",
       "outcome": ""
