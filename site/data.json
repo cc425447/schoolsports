@@ -1,11 +1,11 @@
 {
   "updated": "2026-10-31",
   "record": {
-    "played": 2,
-    "won": 0,
+    "played": 3,
+    "won": 1,
     "lost": 2,
     "drawn": 0,
-    "position": 5,
+    "position": 4,
     "teams": 6
   },
   "next": {
@@ -15,11 +15,11 @@
     "venue": "Sydney Uni Sport & Aquatic Centre, Court 1, SACS, Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008"
   },
   "last": {
-    "date": "Sat 24 Oct 2026",
-    "opp": "St Stanislaus' 14A",
-    "for": 38,
-    "against": 41,
-    "outcome": "L",
+    "date": "Sat 31 Oct 2026",
+    "opp": "St Pius 14B",
+    "for": 32,
+    "against": 20,
+    "outcome": "W",
     "note": ""
   },
   "rounds": [
@@ -55,9 +55,9 @@
       "home": false,
       "place": "CBC, Court 2 · Oxford Falls",
       "venue": "CBC, Court 2, SPX, Oxford Falls Playing Fields Complex, 1 Dreadnought Rd, Oxford Falls NSW 2099",
-      "for": "",
-      "against": "",
-      "outcome": ""
+      "for": 32,
+      "against": 20,
+      "outcome": "W"
     },
     {
       "round": 4,
