@@ -1,11 +1,11 @@
 {
   "updated": "2026-11-07",
   "record": {
-    "played": 3,
+    "played": 4,
     "won": 1,
-    "lost": 2,
+    "lost": 3,
     "drawn": 0,
-    "position": 4,
+    "position": 5,
     "teams": 6
   },
   "next": {
@@ -15,11 +15,11 @@
     "venue": "SPGS, School Grounds, St Pauls Grammar School, 52 Taylor Rd, Cranebrook NSW 2749"
   },
   "last": {
-    "date": "Sat 31 Oct 2026",
-    "opp": "St Pius 14B",
-    "for": 32,
-    "against": 20,
-    "outcome": "W",
+    "date": "Sat 7 Nov 2026",
+    "opp": "St Augustine's 14B",
+    "for": 33,
+    "against": 41,
+    "outcome": "L",
     "note": ""
   },
   "rounds": [
@@ -67,9 +67,9 @@
       "home": true,
       "place": "Sydney Uni Sport & Aquatic Centre, Court 1 · Darlington",
       "venue": "Sydney Uni Sport & Aquatic Centre, Court 1, SACS, Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008",
-      "for": "",
-      "against": "",
-      "outcome": ""
+      "for": 33,
+      "against": 41,
+      "outcome": "L"
     },
     {
       "round": 5,
