@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14",
+  "updated": "2026-11-20",
   "record": {
     "played": 5,
     "won": 2,
@@ -122,11 +122,11 @@
     {
       "round": 9,
       "date": "Sat 13 Feb 2027",
-      "time": "TBC",
+      "time": "11:00am",
       "opp": "St Pius 14B",
       "home": true,
-      "place": "",
-      "venue": "",
+      "place": "Sydney Uni Sport & Aquatic Centre, Court 2 · Darlington",
+      "venue": "Sydney Uni Sport & Aquatic Centre, Court 2, SACS, Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008",
       "for": "",
       "against": "",
       "outcome": ""
@@ -134,11 +134,11 @@
     {
       "round": 10,
       "date": "Sat 20 Feb 2027",
-      "time": "TBC",
+      "time": "1:00pm",
       "opp": "St Paul's Grammar 14A",
       "home": true,
-      "place": "",
-      "venue": "",
+      "place": "Sydney Uni Sport & Aquatic Centre, Court 1 · Darlington",
+      "venue": "Sydney Uni Sport & Aquatic Centre, Court 1, SACS, Sydney Uni Sport & Aquatic Centre, Darlington Ln & Codrington St, Darlington NSW 2008",
       "for": "",
       "against": "",
       "outcome": ""
